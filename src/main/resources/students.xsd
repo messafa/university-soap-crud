@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.com/students"
+           targetNamespace="http://www.example.com/students" elementFormDefault="qualified">
+
+    <!-- تعريف كائن الطالب -->
+    <xs:element name="student">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="major" type="xs:string"/>
+                <xs:element name="year" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- طلب إضافة طالب -->
+    <xs:element name="addStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="major" type="xs:string"/>
+                <xs:element name="year" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- رد إضافة طالب -->
+    <xs:element name="addStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:studentType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- طلب البحث عن طالب -->
+    <xs:element name="getStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- رد البحث عن طالب -->
+    <xs:element name="getStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:studentType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- طلب الحصول على جميع الطلاب -->
+    <xs:element name="getAllStudentsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- رد الحصول على جميع الطلاب -->
+    <xs:element name="getAllStudentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="students" type="tns:studentType" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- طلب حذف طالب -->
+    <xs:element name="deleteStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- رد حذف طالب -->
+    <xs:element name="deleteStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- طلب تحديث طالب -->
+    <xs:element name="updateStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="major" type="xs:string"/>
+                <xs:element name="year" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- رد تحديث طالب -->
+    <xs:element name="updateStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:studentType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- تعريف نوع الطالب -->
+    <xs:complexType name="studentType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="major" type="xs:string"/>
+            <xs:element name="year" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
