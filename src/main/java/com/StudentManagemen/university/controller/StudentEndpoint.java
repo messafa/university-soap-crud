@@ -103,6 +103,31 @@ public class StudentEndpoint {
         }
     }
 
+    // تحديث بيانات طالب
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateStudentRequest")
+    @ResponsePayload
+    public UpdateStudentResponse updateStudent(@RequestPayload UpdateStudentRequest request) {
+        try {
+            Student student = studentService.updateStudent(
+                    request.getId(),
+                    request.getName(),
+                    request.getEmail(),
+                    request.getMajor(),
+                    request.getYear()
+            );
+
+            UpdateStudentResponse response = new UpdateStudentResponse();
+            StudentType studentType = mapToStudentType(student);
+            response.setStudent(studentType);
+
+            return response;
+        } catch (Exception e) {
+            throw new RuntimeException("خطأ في تحديث بيانات الطالب: " + e.getMessage());
+        }
+    }
+
+    
+
     // تحويل كائن Student إلى StudentType
     private StudentType mapToStudentType(Student student) {
         StudentType studentType = new StudentType();
